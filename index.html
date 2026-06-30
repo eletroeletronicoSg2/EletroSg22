@@ -1,0 +1,281 @@
+```html
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2G Comércio Eletrônico | Aparelhos, Acessórios e Assistência</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Configuração de Cores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F172A', // Azul escuro premium
+                            accent: '#2563EB', // Azul de destaque
+                            light: '#3B82F6', // Azul claro para elementos visuais
+                            green: '#25D366'  // Verde oficial do WhatsApp
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Suavização de transições globais */
+        .transition-all {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Cabeçalho / Menu de Navegação -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logótipo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-10 h-10 bg-brand-accent rounded-xl flex items-center justify-center mr-3 shadow-md shadow-brand-accent/20">
+                        <i class="fa-solid fa-laptop-code text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-2xl text-slate-950 tracking-tight leading-none">S2G</h1>
+                        <span class="text-[10px] font-semibold text-brand-accent uppercase tracking-wider">Comércio Eletrônico</span>
+                    </div>
+                </div>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#servicos" class="text-slate-600 hover:text-brand-accent font-medium transition-all">Serviços</a>
+                    <a href="#catalogo" onclick="switchTab('produtos')" class="text-slate-600 hover:text-brand-accent font-medium transition-all">Produtos</a>
+                    <a href="#catalogo" onclick="switchTab('maodeobra')" class="text-slate-600 hover:text-brand-accent font-medium transition-all">Mão de Obra</a>
+                    <a href="#contacto" class="text-slate-600 hover:text-brand-accent font-medium transition-all">Contacto</a>
+                </nav>
+
+                <!-- Botão de Contacto Principal -->
+                <div class="hidden sm:block">
+                    <a href="https://wa.me/5511958154369?text=Olá!%20Gostaria%20de%20solicitar%20informações." target="_blank" class="bg-brand-green hover:bg-green-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>(11) 95815-4369</span>
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-accent focus:outline-none p-2 rounded-lg hover:bg-slate-100 transition-all">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 animate-fadeIn">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#servicos" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-accent">Serviços</a>
+                <a href="#catalogo" onclick="switchTab('produtos')" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-accent">Produtos</a>
+                <a href="#catalogo" onclick="switchTab('maodeobra')" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-accent">Mão de Obra</a>
+                <a href="#contacto" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-accent">Contacto</a>
+                <div class="pt-4">
+                    <a href="https://wa.me/5511958154369?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="w-full bg-brand-green hover:bg-green-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Conversar no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="mt-20 bg-brand-blue text-white py-16 lg:py-28 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-blue to-slate-900"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between">
+            <div class="w-full lg:w-3/5 text-center lg:text-left">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-accent/20 text-brand-light border border-brand-accent/30 mb-6">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse"></span>
+                    Loja & Assistência Técnica Especializada
+                </span>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Soluções de Confiança para o seu <span class="text-brand-light">Dispositivo.</span>
+                </h2>
+                <p class="text-lg text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Comercialização de telemóveis de última geração, acessórios premium e serviços de reparação especializada na hora. Transparência, garantia e rapidez.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#catalogo" class="bg-brand-accent hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-brand-accent/20 text-center">
+                        Explorar Catálogo
+                    </a>
+                    <a href="https://wa.me/5511958154369?text=Olá!%20Gostaria%20de%20solicitar%20uma%20reparação." target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-8 py-4 rounded-xl font-bold transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-screwdriver-wrench text-brand-light"></i> Solicitar Reparação
+                    </a>
+                </div>
+            </div>
+            <div class="hidden lg:flex w-2/5 justify-end">
+                <div class="relative p-8 bg-slate-800/40 border border-slate-700/50 rounded-3xl backdrop-blur-sm shadow-2xl">
+                    <i class="fa-solid fa-screwdriver-wrench text-[10rem] text-brand-light/30"></i>
+                    <div class="absolute -bottom-4 -left-4 bg-brand-accent p-4 rounded-2xl shadow-xl">
+                        <i class="fa-solid fa-shield-halved text-white text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaques Operacionais -->
+    <section class="bg-white py-8 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Garantia Certificada</h4>
+                        <p class="text-sm text-slate-500">Garantia em todas as reparações e acessórios.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-bolt text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Serviço Expresso</h4>
+                        <p class="text-sm text-slate-500">Mão de obra rápida para o seu telemóvel não parar.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-handshake text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Orçamento Gratuito</h4>
+                        <p class="text-sm text-slate-500">Avaliações honestas sem custos ocultos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção Informativa de Serviços -->
+    <section id="servicos" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-slate-950">A nossa atuação no mercado</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Trabalhamos em total conformidade com as diretrizes do CNAE para comércio e reparações eletrónicas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Vendas de Aparelhos -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-mobile-screen-button text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Venda de Equipamentos</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Telemóveis e smartphones novos e usados rigorosamente testados e recondicionados.</p>
+                    <span class="text-xs font-semibold text-brand-accent bg-blue-50 py-1 px-2.5 rounded-full uppercase">CNAE Autorizado</span>
+                </div>
+
+                <!-- Acessórios para Aparelhos -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-plug text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Acessórios Premium</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Películas de hidrogel, cabos reforçados, carregadores rápidos, capas protetoras e muito mais.</p>
+                    <span class="text-xs font-semibold text-brand-accent bg-blue-50 py-1 px-2.5 rounded-full uppercase">CNAE Autorizado</span>
+                </div>
+
+                <!-- Assistência Técnica -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-screwdriver-wrench text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Assistência Técnica</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Reparações rápidas de hardware e software, troca de baterias, ecrãs e reparações complexas.</p>
+                    <span class="text-xs font-semibold text-brand-accent bg-blue-50 py-1 px-2.5 rounded-full uppercase">CNAE Autorizado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECÇÃO INTEGRADA: Catálogo de Produtos & Mão de Obra (SISTEMA DE ABAS) -->
+    <section id="catalogo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-950">Catálogo e Orçamentos de Serviços</h2>
+                <p class="mt-4 text-slate-600 max-w-xl mx-auto">Selecione o que procura para consultar especificações técnicas ou valores sugeridos de mão de obra.</p>
+            </div>
+
+            <!-- Botões das Abas (Tabs Switcher) -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+                    <button onclick="switchTab('produtos')" id="tab-btn-produtos" class="px-6 py-3 rounded-xl font-bold text-sm transition-all bg-white text-brand-accent shadow">
+                        <i class="fa-solid fa-box-open mr-2"></i> Produtos em Destaque
+                    </button>
+                    <button onclick="switchTab('maodeobra')" id="tab-btn-maodeobra" class="px-6 py-3 rounded-xl font-bold text-sm transition-all text-slate-600 hover:text-brand-accent">
+                        <i class="fa-solid fa-hammer mr-2"></i> Tabela de Mão de Obra
+                    </button>
+                </div>
+            </div>
+
+            <!-- Conteúdo da Aba 1: PRODUTOS (Sem Fotos) -->
+            <div id="content-produtos" class="space-y-8 animate-fadeIn">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Produto 1: Carregador Rápido -->
+                    <div class="border border-slate-200 hover:border-brand-accent rounded-2xl p-6 bg-slate-50/50 hover:bg-white transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-blue-100 text-brand-accent text-xs font-bold px-2.5 py-1 rounded-md uppercase">Acessório</span>
+                                <span class="text-emerald-600 font-bold text-sm"><i class="fa-solid fa-bolt mr-1"></i> Em Stock</span>
+                            </div>
+                            <div class="text-3xl text-brand-accent mb-4"><i class="fa-solid fa-bolt-lightning"></i></div>
+                            <h4 class="font-extrabold text-lg text-slate-950 mb-2">Carregador Ultra Rápido USB-C 20W</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-6">Carregamento rápido inteligente e seguro para os telemóveis mais recentes. Compatibilidade universal.</p>
+                        </div>
+                        <a href="https://wa.me/5511958154369?text=Olá!%20Gostaria%20de%20saber%20o%20preço%20do%20Carregador%20Ultra%20Rápido%2020W." target="_blank" class="w-full bg-slate-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-semibold text-center text-sm transition-all block">
+                            Consultar Preço <i class="fa-brands fa-whatsapp ml-1.5 text-base text-brand-green"></i>
+                        </a>
+                    </div>
+
+                    <!-- Produto 2: Películas -->
+                    <div class="border border-slate-200 hover:border-brand-accent rounded-2xl p-6 bg-slate-50/50 hover:bg-white transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-blue-100 text-brand-accent text-xs font-bold px-2.5 py-1 rounded-md uppercase">Proteção</span>
+                                <span class="text-emerald-600 font-bold text-sm"><i class="fa-solid fa-bolt mr-1"></i> Sob Medida</span>
+                            </div>
+                            <div class="text-3xl text-brand-accent mb-4"><i class="fa-solid fa-shield"></i></div>
+                            <h4 class="font-extrabold text-lg text-slate-950 mb-2">Películas de Hidrogel Premium</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-6">Corte à medida exata do seu ecrã. Tecnologia que regenera pequenos riscos e protege contra impactos diretos.</p>
+                        </div>
+                        <a href="https://wa.me/5511958154369?text=Olá!%20Quero%20uma%20película%20de%20hidrogel.%20Qual%20o%20valor%20para%20o%20meu%20modelo?" target="_blank" class="w-full bg-slate-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-semibold text-center text-sm transition-all block">
+                            Orçamento para o meu Telemóvel <i class="fa-brands fa-whatsapp ml-1.5 text-base text-brand-green"></i>
+                        </a>
+                    </div>
+
+                    <!-- Produto 3: Capas de Proteção -->
+                    <div class="border border-slate-200 hover:border-brand-accent rounded-2xl p-6 bg-slate-50/50 hover:bg-white transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-blue-100 text-brand-accent text-xs font-bold px-2.5 py-1 rounded-md uppercase">Acessório</span>
+                                <span class="text-emerald-600 font-bold text-sm"><i class="fa-solid fa-bolt mr-1"></i> Em Stock</span>
+                            </div>
+                            <div class="text-3xl text-brand-accent mb-4"><i class="fa-solid fa-mobile-retro"></i></div>
+                            <h4 class="font-extrabold text-lg text-slate-950 mb-2">Capas Protetoras Pro-Shock</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-6">Bordas reforçadas em silicone flexível e alta absorção contra impactos. Design discreto e ultra-resistente.</p>
+                        </div>
+                        <a href="https://wa.me/5511958154369?text=Olá!%20Quero%20saber%20se%20tem%20capa%20Pro-Shock%20para%20o%20meu%20aparelho." target="_blank" class="w-full bg-slate-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-semibold text-center text-sm transition-all block">
+                            Consultar Cores & Modelos <i class="fa-brands fa-whatsapp ml-1.5 text-base text-brand-green"></i>
+                        </a>
+                    </div>
+
+                    <!-- Produto 4: Cabos Reforçados -->
+                    <div class="border border-slate-200 hover:border-brand-accent rounded-2xl p-6 bg-slate-50/50 hover:bg-white transition-all hover:shadow-lg flex flex-col justify-between">
+   
